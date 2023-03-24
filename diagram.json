@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "author": "Joost van den Brandt",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-text",
+      "id": "gun_text",
+      "top": -216.87,
+      "left": -298.5,
+      "attrs": { "text": "GUN Part (press button to shoot)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "suit_text",
+      "top": -369.98,
+      "left": 145.8,
+      "attrs": { "text": "SUIT Part \n Press 1,2 or 3 to simulate a shot from that team" }
+    },
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 33.5,
+      "left": 4.6,
+      "attrs": { "env": "micropython-20220618-v1.19.1" }
+    },
+    { "type": "wokwi-neopixel", "id": "rgb1", "top": -157.1, "left": -135.4, "attrs": {} },
+    { "type": "wokwi-neopixel", "id": "rgb2", "top": -156.83, "left": -105.13, "attrs": {} },
+    { "type": "wokwi-neopixel", "id": "rgb3", "top": -157.5, "left": -73.8, "attrs": {} },
+    { "type": "wokwi-ir-receiver", "id": "ir1", "top": -155.54, "left": -234.18, "attrs": {} },
+    {
+      "type": "wokwi-led-ring",
+      "id": "ring1",
+      "top": -301.92,
+      "left": 219.23,
+      "attrs": { "pixels": "16" }
+    },
+    { "type": "wokwi-ir-receiver", "id": "ir2", "top": -108.92, "left": 259.6, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 201.82,
+      "left": -128.09,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 90.08,
+      "left": -114.25,
+      "attrs": { "color": "white", "lightColor":"red", "flip": "" }
+    },
+    { "type": "wokwi-ir-remote", "id": "remote1", "top": -2.46, "left": 316.64, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "rgb3:DOUT", "rgb2:DIN", "#8f4814", [ "v-6.17", "h-11.33" ] ],
+    [ "rgb2:DOUT", "rgb1:DIN", "#8f4814", [ "v-5.27", "h-10.27" ] ],
+    [ "rgb3:VDD", "rgb2:VDD", "green", [ "v-16.09", "h-31.33" ] ],
+    [ "rgb2:VDD", "rgb1:VDD", "green", [ "v-15.98", "h-30.27" ] ],
+    [ "esp:VIN", "rgb3:VSS", "red", [ "h0" ] ],
+    [ "rgb1:DOUT", "ring1:DIN", "#8f4814", [ "v22.49", "h429.24" ] ],
+    [ "esp:GND.2", "rgb1:VDD", "black", [ "h-155.38", "v-336.1" ] ],
+    [ "ring1:VCC", "esp:VIN", "red", [ "v22.07", "h-333.61", "v318.89" ] ],
+    [ "ring1:GND", "esp:GND.2", "black", [ "v15.79", "h-305.16", "v315.67" ] ],
+    [ "ir2:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "ir2:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:3V3", "ir1:VCC", "red", [ "v0.82", "h66.46", "v95.83", "h-358.98" ] ],
+    [ "esp:GND.1", "ir1:GND", "black", [ "h95.52", "v121.86", "h-18.85" ] ],
+    [ "btn1:2.r", "esp:D26", "green", [ "h41.78", "v-99.13" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "led1:A", "esp:D13", "green", [ "v0" ] ],
+    [ "rgb3:DIN", "esp:D27", "green", [ "h37.52", "v298.3" ] ],
+    [ "ir2:DAT", "esp:D23", "green", [ "v0" ] ],
+    [ "ir1:DAT", "esp:D23", "green", [ "v80.17", "h317.34", "v44.3" ] ],
+    [ "esp:GND.2", "btn1:1.l", "black", [ "h0" ] ]
+  ],
+  "serialMonitor": { "display": "always", "newline": "lf" },
+  "dependencies": {}
+}
