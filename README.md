@@ -113,17 +113,16 @@ Subscribe to command events before calling _connect()_:
 ```py
 client.on(IoTCEvents.COMMANDS, callback)
 ```
-To provide feedbacks for the command like execution result or progress, the client can call the **ack** function available in the callback.
+To provide feedbacks for the command like execution completion, the client can call the **reply** function available on the command.
 
 The function accepts 1 command argument: the command instance.
 ```py
 def on_commands(command):
-print(command.name)
-command.reply()
+    print(command.name)
+    command.reply()
 
 client.on(IoTCEvents.COMMANDS, on_commands)
   ```
-Call `reply()` to send an acknoledge back.
 
 ### How to set IoTC template ID in your device
 Device template id (a.k.a Model Id) is used when obtaining authorization codes for new devices and automatically assign them to the right template. By providing template id during credentials generation, user doesn't need to manually migrate or assign device from IoT Central site.
