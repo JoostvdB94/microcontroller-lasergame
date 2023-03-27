@@ -44,3 +44,6 @@ class NEC(IR):
         self.aptr = 0
         self.append(9000, 2250, _TBURST)
         self.trigger()  # Initiate physical transmission.
+
+    def __del__(self):
+        del super

@@ -18,6 +18,7 @@ class Suit:
     def setup_pins(self, neopixel_pin_number):
         np_pin = Pin(neopixel_pin_number, Pin.OUT)
         self.np = neopixel.NeoPixel(np_pin, self.neopixel_count)
+        
 
     def reset():
         self.should_blink = False
@@ -64,3 +65,6 @@ class Suit:
             return self.teamcolors[self.team -1]
         else:
             raise Exception("Zero or negative teams are not allowed")
+
+    def __del__(self):
+        del self.np

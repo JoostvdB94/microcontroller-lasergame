@@ -17,6 +17,9 @@ class Player:
     def add_hp(self, hp):
         self.hp += hp
 
+    def get_healthpoints(self):
+        return self.hp
+
     def set_killed(self, killed):
         self.killed = killed
 

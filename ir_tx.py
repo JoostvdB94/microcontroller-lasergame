@@ -119,6 +119,11 @@ class IR:
         # .carrier unaffected
         self._arr[self.aptr - 1] += t
 
+    def __del__(self):
+        print("destructing IR TX")
+        self._rmt.deinit()
+        del self._rmt
+
 
 # Given an iterable (e.g. list or tuple) of times, emit it as an IR stream.
 class Player(IR):
