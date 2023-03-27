@@ -95,10 +95,13 @@ client.on(IoTCEvents.PROPERTIES, callback)
 To provide property sync aknowledgement, the callback must return the 
 property value if has been successfully applied or nothing.
 
+Currently, the library only seems to accept data in composite form: 
+`{ "team": { "value": 2 } }`
+
 e.g.
 ```py
 def on_props(prop_name, prop_value, component):
-    if prop_value>10:
+    if prop_value.value >10:
         # process property
         return prop_value
 
