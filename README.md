@@ -97,7 +97,7 @@ property value if has been successfully applied or nothing.
 
 e.g.
 ```py
-def on_props(prop_name, prop_value):
+def on_props(prop_name, prop_value, component):
     if prop_value>10:
         # process property
         return prop_value
